@@ -15,10 +15,10 @@ export default clerkMiddleware(
     if (userId) {
       if (!orgId) {
         // return NextResponse.redirect(new URL('/create-workspace', req.url), 308);
-        return NextResponse.redirect(new URL('/', req.url), 308);
+        return NextResponse.rewrite(new URL('/dashboard', req.url));
       }
       if (orgId && isPublicRoute(req)) {
-        return NextResponse.redirect(new URL(`/w/${orgId}/home`, req.url), 308);
+        return NextResponse.rewrite(new URL(`/w/${orgId}/home`, req.url));
       }
       return;
     }
